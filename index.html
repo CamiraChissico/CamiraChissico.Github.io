@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La Belle Cuisine | Menu</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<!-- Your existing content -->
+  
+<div id="orderNotification" class="notification-hidden">
+    <i class="fas fa-check-circle"></i>
+    <span>Order placed successfully!</span>
+  </div>
+  
+  </body>
+<body>
+    <div class="menu-container">
+        <!-- Decorative elements -->
+        <div class="menu-border left"></div>
+        <div class="menu-border right"></div>
+        
+        <header class="menu-header">
+            <div class="restaurant-name">
+                <h1>La Belle</h1>
+                <h2>Cuisine</h2>
+            </div>
+            <div class="header-divider">
+                <div class="divider-line"></div>
+                <img  src="alt="Decorative icon" class="divider-icon" height="120" width = "120">
+                <div class="divider-line"></div>
+            </div>
+            <p class="menu-date">Seasonal Menu • Spring 2025</p>
+        </header>
+
+        <nav class="menu-nav">
+            <button class="nav-btn active" data-category="starters">Starters</button>
+            <button class="nav-btn" data-category="mains">Main Courses</button>
+            <button class="nav-btn" data-category="desserts">Desserts</button>
+            <button class="nav-btn" data-category="drinks">Wine Pairings</button>
+        </nav>
+
+        <main class="menu-content">
+            <!-- Starters Section -->
+            <section class="menu-section active" id="starters">
+                <h3 class="section-title">To Begin</h3>
+                
+                <article class="menu-item">
+                    <div class="item-header">
+                        <h4 class="item-name">Sopa</h4>
+                        <div class="price-dots"></div>
+                        <span class="item-price">Mt450</span>
+                    </div>
+                    <p class="item-description">Peixe grelhado</p>
+                    <button class="order-btn">Add to Order</button>
+                </article>
+
+                <article class="menu-item">
+                    <div class="item-header">
+                        <h4 class="item-name">Frango Assado</h4>
+                        <div class="price-dots"></div>
+                        <span class="item-price">Mt600</span>
+                    </div>
+                    <p class="item-description">Fresh scallops marinated in citrus, with avocado, radish, and micro cilantro</p>
+                    <button class="order-btn">Add to Order</button>
+                </article>
+            </section>
+
+            <!-- Mains Section -->
+            <!-- In your HTML file, within the <main class="menu-content"> section -->
+<section class="menu-section" id="mains">
+    <h3 class="section-title">Main Courses</h3>
+    
+    <article class="menu-item">
+        <div class="item-header">
+            <h4 class="item-name">Spaghetti Carbonara</h4>
+            <div class="price-dots"></div>
+            <span class="item-price">Mt350</span>
+        </div>
+        <p class="item-description">Al dente pasta with creamy egg sauce, crispy pancetta, and aged Pecorino Romano</p>
+        <button class="order-btn">Add to Order</button>
+    </article>
+
+    <article class="menu-item">
+        <div class="item-header">
+            <h4 class="item-name">Truffle Mushroom Pizza</h4>
+            <div class="price-dots"></div>
+            <span class="item-price">Mt450</span>
+        </div>
+        <p class="item-description">Wood-fired crust with wild mushrooms, truffle oil, fontina cheese, and fresh thyme</p>
+        <button class="order-btn">Add to Order</button>
+    </article>
+
+    <article class="menu-item">
+        <div class="item-header">
+            <h4 class="item-name">Gourmet Hamburger</h4>
+            <div class="price-dots"></div>
+            <span class="item-price">Mt400</span>
+        </div>
+        <p class="item-description">Wagyu beef patty with caramelized onions, aged cheddar, and house-made bourbon BBQ sauce</p>
+        <button class="order-btn">Add to Order</button>
+    </article>
+
+    <article class="menu-item">
+        <div class="item-header">
+            <h4 class="item-name">Grilled Salmon</h4>
+            <div class="price-dots"></div>
+            <span class="item-price">Mt550</span>
+        </div>
+        <p class="item-description">Atlantic salmon with lemon beurre blanc, asparagus, and roasted baby potatoes</p>
+        <button class="order-btn">Add to Order</button>
+    </article>
+</section>
+
+<!-- DESSERTS SECTION -->
+<section class="menu-section" id="desserts">
+    <h3 class="section-title">Sweet Finales</h3>
+    
+    <article class="menu-item">
+        <div class="item-header">
+            <h4 class="item-name">Sorvete de Baunilha</h4>
+            <div class="price-dots"></div>
+            <span class="item-price">Mt250</span>
+        </div>
+        <p class="item-description">Madagascar vanilla bean ice cream with caramelized white chocolate shavings</p>
+        <button class="order-btn">Add to Order</button>
+    </article>
+
+    <article class="menu-item">
+        <div class="item-header">
+            <h4 class="item-name">Sorvete de Chocolate</h4>
+            <div class="price-dots"></div>
+            <span class="item-price">Mt280</span>
+        </div>
+        <p class="item-description">Rich Belgian chocolate ice cream with warm chocolate sauce</p>
+        <button class="order-btn">Add to Order</button>
+    </article>
+
+    <article class="menu-item">
+        <div class="item-header">
+            <h4 class="item-name">Batido de Banana</h4>
+            <div class="price-dots"></div>
+            <span class="item-price">Mt300</span>
+        </div>
+        <p class="item-description">Creamy banana milkshake with caramel drizzle</p>
+        <button class="order-btn">Add to Order</button>
+    </article>
+
+    <article class="menu-item">
+        <div class="item-header">
+            <h4 class="item-name">Milkshake Clássico</h4>
+            <div class="price-dots"></div>
+            <span class="item-price">Mt320</span>
+        </div>
+        <p class="item-description">Velvety vanilla milkshake with whipped cream</p>
+        <button class="order-btn">Add to Order</button>
+    </article>
+</section>
+
+<!-- WINE PAIRING SECTION -->
+<section class="menu-section" id="drinks">
+    <h3 class="section-title">Wine Pairings</h3>
+    
+    <article class="menu-item">
+        <div class="item-header">
+            <h4 class="item-name">Vinho Branco</h4>
+            <div class="price-dots"></div>
+            <span class="item-price">Mt600/garrafa</span>
+        </div>
+        <p class="item-description">Crisp Portuguese Alvarinho, perfect with seafood</p>
+        <button class="order-btn">Add to Order</button>
+    </article>
+
+    <article class="menu-item">
+        <div class="item-header">
+            <h4 class="item-name">Vinho Tinto</h4>
+            <div class="price-dots"></div>
+            <span class="item-price">Mt750/garrafa</span>
+        </div>
+        <p class="item-description">Bold Douro red, pairs wonderfully with meats</p>
+        <button class="order-btn">Add to Order</button>
+    </article>
+
+    <article class="menu-item">
+        <div class="item-header">
+            <h4 class="item-name">Espumante</h4>
+            <div class="price-dots"></div>
+            <span class="item-price">Mt900/garrafa</span>
+        </div>
+        <p class="item-description">Portuguese sparkling wine for celebrations</p>
+        <button class="order-btn">Add to Order</button>
+    </article>
+
+    <article class="menu-item">
+        <div class="item-header">
+            <h4 class="item-name">Sangria</h4>
+            <div class="price-dots"></div>
+            <span class="item-price">Mt400/jarra</span>
+        </div>
+        <p class="item-description">Traditional recipe with seasonal fruits</p>
+        <button class="order-btn">Add to Order</button>
+    </article>
+</section> <section class="contact-section">
+    <div class="gold-divider">
+      <div class="line"></div>
+      <i class="fas fa-star"></i>
+      <div class="line"></div>
+    </div>
+    
+    <h3 class="section-title">Contact Us</h3>
+    <p class="contact-subtitle">Reservations & Inquiries</p>
+    
+    <div class="contact-buttons">
+      <!-- Animated Call Button -->
+      <a href="tel:+258123456789" class="contact-btn call-btn">
+        <div class="btn-content">
+          <div class="icon-circle">
+            <i class="fas fa-phone-alt"></i>
+          </div>
+          <div class="btn-text">
+            <span class="btn-label">Call Us</span>
+            <span class="btn-detail">+258 842094211</span>
+          </div>
+        </div>
+        <div class="pulse-ring"></div>
+      </a>
+      
+      <!-- Glowing Email Button -->
+      <a href="mailto:reservations@labellecuisine.com" class="contact-btn email-btn">
+        <div class="btn-content">
+          <div class="icon-circle">
+            <i class="fas fa-envelope"></i>
+          </div>
+          <div class="btn-text">
+            <span class="btn-label">Email Us</span>
+            <span class="btn-detail">reservations@labellecuisine.com</span>
+          </div>
+        </div>
+        <div class="glow"></div>
+      </a>
+    </div>
+  </section>
+
+
+        </main>
+
+        <aside class="order-summary">
+            <div class="order-header">
+                <h3>Your Selection</h3>
+                <span class="item-count">0 items</span>
+            </div>
+            <div class="order-items">
+                <!-- Items will be added here dynamically -->
+            </div>
+            <div class="order-total">
+                <span>Total</span>
+                <span class="total-amount">Mt0</span>
+            </div>
+            <button class="checkout-btn">Reserve Your Table</button>
+        </aside>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
