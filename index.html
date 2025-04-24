@@ -3,266 +3,1058 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>La Belle Cuisine | Menu</title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400&display=swap">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="stylesheet" href="styles.css">
+    <title>🍽️ La Belle Cuisine Menu ✨</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400;600&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        :root {
+            --pink: #FF69B4;
+            --dark-pink: #DB7093;
+            --light-pink: #FFF0F5;
+            --gold: #FFD700;
+            --dark: #4A2C40;
+            --light: #FFF9FB;
+            --accent: #FF1493;
+            --text: #5E3A4D;
+
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #121212;
+            color: var(--light);
+            font-family: 'Montserrat', sans-serif;
+            line-height: 1.6;
+            padding: 2rem;
+        }
+
+        .menu-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: rgba(30, 30, 30, 0.95);
+            position: relative;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            padding: 3rem;
+            border: 2px solid var(--accent);
+            border-radius: 15px;
+            overflow: hidden;
+        }
+
+        .menu-container::before {
+            content: "🍽️ ✨ 🍷";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            text-align: center;
+            font-size: 1.5rem;
+            color: var(--accent);
+            opacity: 0.3;
+        }
+
+        .menu-border {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 20px;
+            background: repeating-linear-gradient(
+                0deg,
+                transparent,
+                transparent 20px,
+                var(--accent) 20px,
+                var(--accent) 40px
+            );
+        }
+
+        .menu-border.left {
+            left: 0;
+            border-right: 1px solid var(--accent);
+        }
+
+        .menu-border.right {
+            right: 0;
+            border-left: 1px solid var(--accent);
+        }
+
+        .menu-header {
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .restaurant-name h1 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 5rem;
+            font-weight: 700;
+            color: var(--gold);
+            letter-spacing: 2px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            margin-bottom: 0.5rem;
+        }
+
+        .restaurant-name h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2rem;
+            color: var(--accent);
+            margin-top: -1rem;
+            letter-spacing: 5px;
+            font-weight: 300;
+        }
+
+        .header-divider {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 1.5rem 0;
+        }
+
+        .divider-line {
+            height: 2px;
+            width: 100px;
+            background: linear-gradient(to right, transparent, var(--accent), transparent);
+        }
+
+        .divider-icon {
+            margin: 0 1rem;
+            color: var(--accent);
+            font-size: 1.5rem;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0); }
+        }
+
+        .menu-date {
+            font-style: italic;
+            letter-spacing: 1px;
+            color: var(--accent);
+            font-size: 1.1rem;
+            margin-top: 1rem;
+        }
+
+        .menu-nav {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 3rem;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .nav-btn {
+            background: none;
+            border: none;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.1rem;
+            padding: 0.8rem 2rem;
+            color: var(--light);
+            cursor: pointer;
+            position: relative;
+            transition: all 0.3s ease;
+            border-radius: 50px;
+            background: rgba(141, 110, 99, 0.2);
+        }
+
+        .nav-btn:hover {
+            background: rgba(141, 110, 99, 0.4);
+        }
+
+        .nav-btn.active {
+            color: white;
+            background: var(--secondary);
+            box-shadow: 0 4px 15px rgba(141, 110, 99, 0.4);
+        }
+
+        .nav-btn.active::after {
+            content: '✨';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .menu-section {
+            display: none;
+            margin-bottom: 3rem;
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .menu-section.active {
+            display: block;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2rem;
+            color: var(--gold);
+            margin-bottom: 2rem;
+            text-align: center;
+            letter-spacing: 2px;
+            position: relative;
+            display: inline-block;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 0 2rem;
+        }
+
+        .section-title::before, .section-title::after {
+            content: '✨';
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            opacity: 0.7;
+        }
+
+        .section-title::before {
+            left: 0;
+        }
+
+        .section-title::after {
+            right: 0;
+        }
+
+        .menu-item {
+            margin-bottom: 2.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px dashed rgba(215, 204, 200, 0.3);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .menu-item:hover {
+            transform: translateX(10px);
+        }
+
+        .menu-item:hover::before {
+            content: '✨';
+            position: absolute;
+            left: -30px;
+            top: 0;
+            color: var(--accent);
+        }
+
+        .item-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+
+        .item-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            color: var(--gold);
+            font-weight: 700;
+        }
+
+        .price-dots {
+            flex: 1;
+            border-bottom: 1px dotted var(--accent);
+            margin: 0 1rem;
+            transform: translateY(-3px);
+        }
+
+        .item-price {
+            font-family: 'Playfair Display', serif;
+            color: var(--accent);
+            font-weight: 700;
+            font-size: 1.3rem;
+        }
+
+        .item-description {
+            font-size: 1rem;
+            margin-bottom: 1rem;
+            color: var(--light);
+            line-height: 1.7;
+            padding-left: 1rem;
+            border-left: 2px solid var(--secondary);
+        }
+
+        .order-btn {
+            background-color: transparent;
+            border: 2px solid var(--accent);
+            color: var(--accent);
+            padding: 0.7rem 2rem;
+            font-family: 'Montserrat', sans-serif;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            float: right;
+            border-radius: 50px;
+            font-weight: 600;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .order-btn:hover {
+            background-color: var(--secondary);
+            color: white;
+            box-shadow: 0 5px 15px rgba(141, 110, 99, 0.4);
+        }
+
+        .order-btn::after {
+            content: '➕';
+            position: absolute;
+            right: -20px;
+            top: 50%;
+            transform: translateY(-50%);
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+
+        .order-btn:hover::after {
+            right: 15px;
+            opacity: 1;
+        }
+
+        .order-summary {
+            position: fixed;
+            right: 2rem;
+            top: 2rem;
+            width: 300px;
+            background-color: #1E1E1E;
+            padding: 1.5rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+            border: 2px solid var(--accent);
+            border-radius: 15px;
+            z-index: 100;
+        }
+
+        .order-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px dashed var(--accent);
+        }
+
+        .order-header h3 {
+            font-family: 'Playfair Display', serif;
+            color: var(--gold);
+        }
+
+        .item-count {
+            color: var(--accent);
+            font-weight: 700;
+            background: rgba(141, 110, 99, 0.2);
+            padding: 0.2rem 0.5rem;
+            border-radius: 50px;
+        }
+
+        .order-items {
+            max-height: 300px;
+            overflow-y: auto;
+            margin-bottom: 1rem;
+        }
+
+        .order-total {
+            display: flex;
+            justify-content: space-between;
+            font-weight: 700;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px dashed var(--accent);
+        }
+
+        .total-amount {
+            color: var(--gold);
+            font-size: 1.2rem;
+        }
+
+        .checkout-btn {
+            width: 100%;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            color: white;
+            border: none;
+            padding: 1rem;
+            margin-top: 1rem;
+            font-family: 'Montserrat', sans-serif;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-radius: 50px;
+            font-weight: 600;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .checkout-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 7px 20px rgba(0, 0, 0, 0.4);
+        }
+
+        .checkout-btn:active {
+            transform: translateY(0);
+        }
+
+        /* Contact Section */
+        .contact-section {
+            text-align: center;
+            padding: 3rem 1rem;
+            background: rgba(30, 30, 30, 0.8);
+            margin-top: 3rem;
+            border-radius: 15px;
+            border: 2px solid var(--accent);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-section::before {
+            content: "✨ 📞 ✉️";
+            position: absolute;
+            top: 10px;
+            left: 0;
+            right: 0;
+            text-align: center;
+            font-size: 1.5rem;
+            color: var(--accent);
+            opacity: 0.2;
+        }
+
+        .gold-divider {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 2rem;
+            max-width: 300px;
+        }
+
+        .gold-divider .line {
+            height: 2px;
+            flex: 1;
+            background: linear-gradient(90deg, transparent, var(--accent), transparent);
+        }
+
+        .gold-divider i {
+            color: var(--accent);
+            margin: 0 1rem;
+            font-size: 1.5rem;
+        }
+
+        .contact-subtitle {
+            color: var(--light);
+            margin-bottom: 2rem;
+            font-style: italic;
+            letter-spacing: 1px;
+            font-size: 1.1rem;
+        }
+
+        /* Contact Buttons */
+        .contact-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .contact-btn {
+            position: relative;
+            display: flex;
+            background: #1E1E1E;
+            border-radius: 15px;
+            text-decoration: none;
+            width: 100%;
+            max-width: 350px;
+            padding: 1.5rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            transition: all 0.4s ease;
+            overflow: hidden;
+            border: 2px solid var(--accent);
+        }
+
+        .btn-content {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            z-index: 2;
+        }
+
+        .icon-circle {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-right: 1.5rem;
+            flex-shrink: 0;
+            background: rgba(141, 110, 99, 0.2);
+            color: var(--accent);
+        }
+
+        .btn-text {
+            text-align: left;
+            flex: 1;
+        }
+
+        .btn-label {
+            display: block;
+            color: var(--gold);
+            font-weight: 600;
+            margin-bottom: 0.3rem;
+            font-size: 1.1rem;
+        }
+
+        .btn-detail {
+            display: block;
+            color: var(--light);
+            font-size: 0.95rem;
+        }
+
+        /* Hover Effects */
+        .contact-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+        }
+
+        .contact-btn:hover .icon-circle {
+            animation: bounce 0.5s ease;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        /* Order Notification */
+        #orderNotification {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: var(--secondary);
+            color: white;
+            padding: 15px 25px;
+            border-radius: 50px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+            z-index: 1000;
+            transform: translateX(150%);
+            transition: transform 0.4s ease-out;
+            font-weight: 600;
+        }
+
+        #orderNotification i {
+            font-size: 1.5rem;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .notification-visible {
+            transform: translateX(0) !important;
+        }
+
+        /* Delivery Message */
+        .delivery-message {
+            font-size: 0.9rem;
+            color: var(--gold);
+            font-style: italic;
+            margin-top: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .delivery-message i {
+            color: var(--accent);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .order-summary {
+                position: static;
+                width: 100%;
+                margin-top: 2rem;
+            }
+            
+            .menu-container {
+                padding: 2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 1rem;
+            }
+            
+            .restaurant-name h1 {
+                font-size: 3.5rem;
+            }
+            
+            .restaurant-name h2 {
+                font-size: 1.5rem;
+                letter-spacing: 3px;
+            }
+            
+            .menu-nav {
+                flex-wrap: wrap;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            .contact-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .restaurant-name h1 {
+                font-size: 2.8rem;
+            }
+
+            .item-name {
+                font-size: 1.3rem;
+            }
+
+            .item-price {
+                font-size: 1.1rem;
+            }
+
+            .order-btn {
+                padding: 0.5rem 1.5rem;
+                font-size: 0.9rem;
+            }
+        }
+
+        /* Floating Elements */
+        .floating-elements {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .floating-element {
+            position: absolute;
+            font-size: 1.2rem;
+            color: rgba(215, 204, 200, 0.3);
+            animation: float-up 10s linear infinite;
+        }
+
+        @keyframes float-up {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+    </style>
 </head>
-<!-- Your existing content -->
-  
-<div id="orderNotification" class="notification-hidden">
-    <i class="fas fa-check-circle"></i>
-    <span>Order placed successfully!</span>
-  </div>
-  
-  </body>
 <body>
+    <div class="floating-elements" id="elements-container"></div>
+    
     <div class="menu-container">
-        <!-- Decorative elements -->
         <div class="menu-border left"></div>
         <div class="menu-border right"></div>
         
-        <header class="menu-header">
+        <div class="menu-header">
             <div class="restaurant-name">
-                <h1>La Belle</h1>
-                <h2>Cuisine</h2>
+                <h1>La Belle Cuisine</h1>
+                <h2>FINE DINING EXPERIENCE</h2>
             </div>
+            
             <div class="header-divider">
                 <div class="divider-line"></div>
-                <img  src="alt="Decorative icon" class="divider-icon" height="120" width = "120">
+                <div class="divider-icon">✨</div>
                 <div class="divider-line"></div>
             </div>
-            <p class="menu-date">Seasonal Menu • Spring 2025</p>
-        </header>
-
-        <nav class="menu-nav">
-            <button class="nav-btn active" data-category="starters">Starters</button>
-            <button class="nav-btn" data-category="mains">Main Courses</button>
-            <button class="nav-btn" data-category="desserts">Desserts</button>
-            <button class="nav-btn" data-category="drinks">Wine Pairings</button>
-        </nav>
-
-        <main class="menu-content">
-            <!-- Starters Section -->
-            <section class="menu-section active" id="starters">
-                <h3 class="section-title">To Begin</h3>
+            
+            <div class="menu-date">Seasonal Menu • 2024 • Open 11AM-10PM</div>
+        </div>
+        
+        <div class="menu-nav">
+            <button class="nav-btn active" data-section="starters">🍤 Starters</button>
+            <button class="nav-btn" data-section="mains">🍲 Main Courses</button>
+            <button class="nav-btn" data-section="desserts">🍰 Desserts</button>
+            <button class="nav-btn" data-section="drinks">🍹 Drinks</button>
+        </div>
+        
+        <div class="menu-section active" id="starters">
+            <h3 class="section-title">Starters</h3>
+            
+            <div class="menu-item">
+                <div class="item-header">
+                    <div class="item-name">🍤 Camarão Alho</div>
+                    <div class="price-dots"></div>
+                    <div class="item-price">450 MZN</div>
+                </div>
+                <div class="item-description">
+                    Succulent garlic prawns sautéed in olive oil, garlic, and chili flakes, served with crusty bread.
+                </div>
+                <div class="delivery-message">
+                    <i class="fas fa-clock"></i> Ready in 15 min • 🚀 Delivery available
+                </div>
+                <button class="order-btn">Add to Order</button>
+            </div>
+            
+            <div class="menu-item">
+                <div class="item-header">
+                    <div class="item-name">🥑 Avocado Bruschetta</div>
+                    <div class="price-dots"></div>
+                    <div class="item-price">350 MZN</div>
+                </div>
+                <div class="item-description">
+                    Toasted bread topped with mashed avocado, cherry tomatoes, red onion, and balsamic glaze.
+                </div>
+                <div class="delivery-message">
+                    <i class="fas fa-clock"></i> Ready in 10 min • 🚀 Delivery available
+                </div>
+                <button class="order-btn">Add to Order</button>
+            </div>
+            
+            <div class="menu-item">
+                <div class="item-header">
+                    <div class="item-name">🍄 Mushroom Soup</div>
+                    <div class="price-dots"></div>
+                    <div class="item-price">300 MZN</div>
+                </div>
+                <div class="item-description">
+                    Creamy wild mushroom soup with a touch of truffle oil and fresh herbs.
+                </div>
+                <div class="delivery-message">
+                    <i class="fas fa-clock"></i> Ready in 12 min • 🚀 Delivery available
+                </div>
+                <button class="order-btn">Add to Order</button>
+            </div>
+        </div>
+        
+        <div class="menu-section" id="mains">
+            <h3 class="section-title">Main Courses</h3>
+            
+            <div class="menu-item">
+                <div class="item-header">
+                    <div class="item-name">🥩 Frango à Cafreal</div>
+                    <div class="price-dots"></div>
+                    <div class="item-price">650 MZN</div>
+                </div>
+                <div class="item-description">
+                    Spicy Goan-style chicken marinated in green masala, served with fries or rice.
+                </div>
+                <div class="delivery-message">
+                    <i class="fas fa-clock"></i> Ready in 25 min • 🚀 Delivery available
+                </div>
+                <button class="order-btn">Add to Order</button>
+            </div>
+            
+            <div class="menu-item">
+                <div class="item-header">
+                    <div class="item-name">🐟 Peixe Grelhado</div>
+                    <div class="price-dots"></div>
+                    <div class="item-price">750 MZN</div>
+                </div>
+                <div class="item-description">
+                    Fresh local fish grilled to perfection with lemon butter sauce, served with vegetables and mashed potatoes.
+                </div>
+                <div class="delivery-message">
+                    <i class="fas fa-clock"></i> Ready in 20 min • 🚀 Delivery available
+                </div>
+                <button class="order-btn">Add to Order</button>
+            </div>
+            
+            <div class="menu-item">
+                <div class="item-header">
+                    <div class="item-name">🍝 Espaguete à Bolonhesa</div>
+                    <div class="price-dots"></div>
+                    <div class="item-price">550 MZN</div>
+                </div>
+                <div class="item-description">
+                    Classic spaghetti with rich beef bolognese sauce and parmesan cheese.
+                </div>
+                <div class="delivery-message">
+                    <i class="fas fa-clock"></i> Ready in 18 min • 🚀 Delivery available
+                </div>
+                <button class="order-btn">Add to Order</button>
+            </div>
+        </div>
+        
+        <div class="menu-section" id="desserts">
+            <h3 class="section-title">Desserts</h3>
+            
+            <div class="menu-item">
+                <div class="item-header">
+                    <div class="item-name">🍫 Chocolate Mousse</div>
+                    <div class="price-dots"></div>
+                    <div class="item-price">300 MZN</div>
+                </div>
+                <div class="item-description">
+                    Rich dark chocolate mousse with whipped cream and fresh berries.
+                </div>
+                <div class="delivery-message">
+                    <i class="fas fa-clock"></i> Ready in 5 min • 🚀 Delivery available
+                </div>
+                <button class="order-btn">Add to Order</button>
+            </div>
+            
+            <div class="menu-item">
+                <div class="item-header">
+                    <div class="item-name">🍮 Pudim de Leite</div>
+                    <div class="price-dots"></div>
+                    <div class="item-price">250 MZN</div>
+                </div>
+                <div class="item-description">
+                    Traditional Mozambican milk pudding with caramel sauce.
+                </div>
+                <div class="delivery-message">
+                    <i class="fas fa-clock"></i> Ready in 5 min • 🚀 Delivery available
+                </div>
+                <button class="order-btn">Add to Order</button>
+            </div>
+            
+            <div class="menu-item">
+                <div class="item-header">
+                    <div class="item-name">🍍 Ananás Assado</div>
+                    <div class="price-dots"></div>
+                    <div class="item-price">280 MZN</div>
+                </div>
+                <div class="item-description">
+                    Grilled pineapple with cinnamon and coconut ice cream.
+                </div>
+                <div class="delivery-message">
+                    <i class="fas fa-clock"></i> Ready in 8 min • 🚀 Delivery available
+                </div>
+                <button class="order-btn">Add to Order</button>
+            </div>
+        </div>
+        
+        <div class="menu-section" id="drinks">
+            <h3 class="section-title">Drinks</h3>
+            
+            <div class="menu-item">
+                <div class="item-header">
+                    <div class="item-name">🍹 Cocktails</div>
+                    <div class="price-dots"></div>
+                    <div class="item-price">350-450 MZN</div>
+                </div>
+                <div class="item-description">
+                    Try our R&R Special (rum, raspberry, lime) or Tropical Sunset (vodka, mango, passionfruit).
+                </div>
+                <div class="delivery-message">
+                    <i class="fas fa-clock"></i> Ready in 7 min • 🚀 Delivery available
+                </div>
+                <button class="order-btn">Add to Order</button>
+            </div>
+            
+            <div class="menu-item">
+                <div class="item-header">
+                    <div class="item-name">🍷 Wine Selection</div>
+                    <div class="price-dots"></div>
+                    <div class="item-price">400-600 MZN</div>
+                </div>
+                <div class="item-description">
+                    Selection of South African and Portuguese wines by the glass or bottle.
+                </div>
+                <div class="delivery-message">
+                    <i class="fas fa-clock"></i> Ready in 5 min • 🚀 Delivery available
+                </div>
+                <button class="order-btn">Add to Order</button>
+            </div>
+            
+            <div class="menu-item">
+                <div class="item-header">
+                    <div class="item-name">🍹 Non-Alcoholic</div>
+                    <div class="price-dots"></div>
+                    <div class="item-price">150-250 MZN</div>
+                </div>
+                <div class="item-description">
+                    Fresh juices (mango, passionfruit, pineapple), iced teas, and artisanal sodas.
+                </div>
+                <div class="delivery-message">
+                    <i class="fas fa-clock"></i> Ready in 3 min • 🚀 Delivery available
+                </div>
+                <button class="order-btn">Add to Order</button>
+            </div>
+        </div>
+        
+        <div class="contact-section">
+            <div class="gold-divider">
+                <div class="line"></div>
+                <i class="fas fa-heart"></i>
+                <div class="line"></div>
+            </div>
+            
+            <h3 class="section-title">Contact Us</h3>
+            <p class="contact-subtitle">We'd love to hear from you! ✨</p>
+            
+            <div class="contact-buttons">
+                <a href="tel:+258842094211" class="contact-btn call-btn">
+                    <div class="btn-content">
+                        <div class="icon-circle">
+                            <i class="fas fa-phone-alt"></i>
+                        </div>
+                        <div class="btn-text">
+                            <span class="btn-label">Call Us</span>
+                            <span class="btn-detail">+258 84 209 4211</span>
+                        </div>
+                    </div>
+                </a>
                 
-                <article class="menu-item">
-                    <div class="item-header">
-                        <h4 class="item-name">Sopa</h4>
-                        <div class="price-dots"></div>
-                        <span class="item-price">Mt450</span>
+                <a href="mailto:chissicocamira1@gmail.com" class="contact-btn email-btn">
+                    <div class="btn-content">
+                        <div class="icon-circle">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="btn-text">
+                            <span class="btn-label">Email Us</span>
+                            <span class="btn-detail">chissicocamira1@gmail.com</span>
+                        </div>
                     </div>
-                    <p class="item-description">Peixe grelhado</p>
-                    <button class="order-btn">Add to Order</button>
-                </article>
-
-                <article class="menu-item">
-                    <div class="item-header">
-                        <h4 class="item-name">Frango Assado</h4>
-                        <div class="price-dots"></div>
-                        <span class="item-price">Mt600</span>
+                </a>
+            </div>
+        </div>
+    </div>
+    
+    <div class="order-summary">
+        <div class="order-header">
+            <h3>Your Order</h3>
+            <span class="item-count">0 items</span>
+        </div>
+        <div class="order-items" id="orderItems">
+            <!-- Order items will be added here -->
+        </div>
+        <div class="order-total">
+            <span>Total:</span>
+            <span class="total-amount">0 MZN</span>
+        </div>
+        <button class="checkout-btn">Checkout 💖</button>
+    </div>
+    
+    <div id="orderNotification">
+        <i class="fas fa-check-circle"></i>
+        <span>Item added to your order!</span>
+    </div>
+    
+    <script>
+        // Navigation between menu sections
+        document.querySelectorAll('.nav-btn').forEach(button => {
+            button.addEventListener('click', () => {
+                // Remove active class from all buttons and sections
+                document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active'));
+                document.querySelectorAll('.menu-section').forEach(section => section.classList.remove('active'));
+                
+                // Add active class to clicked button
+                button.classList.add('active');
+                
+                // Show corresponding section
+                const sectionId = button.getAttribute('data-section');
+                document.getElementById(sectionId).classList.add('active');
+            });
+        });
+        
+        // Order functionality
+        let orderItems = [];
+        let orderTotal = 0;
+        const MAX_ITEMS = 30;
+        
+        document.querySelectorAll('.order-btn').forEach(button => {
+            button.addEventListener('click', () => {
+                if (orderItems.length >= MAX_ITEMS) {
+                    alert(`Maximum order limit reached (${MAX_ITEMS} items). Please proceed to checkout.`);
+                    return;
+                }
+                
+                const menuItem = button.closest('.menu-item');
+                const itemName = menuItem.querySelector('.item-name').textContent;
+                const itemPrice = parseFloat(menuItem.querySelector('.item-price').textContent);
+                
+                // Add to order
+                orderItems.push({ name: itemName, price: itemPrice });
+                orderTotal += itemPrice;
+                
+                // Update order summary
+                updateOrderSummary();
+                
+                // Show notification
+                showNotification();
+            });
+        });
+        
+        function updateOrderSummary() {
+            const orderItemsContainer = document.getElementById('orderItems');
+            const itemCount = document.querySelector('.item-count');
+            const totalAmount = document.querySelector('.total-amount');
+            
+            // Clear current items
+            orderItemsContainer.innerHTML = '';
+            
+            // Add each item
+            orderItems.forEach(item => {
+                const itemElement = document.createElement('div');
+                itemElement.className = 'order-item';
+                itemElement.innerHTML = `
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                        <span>${item.name}</span>
+                        <span>${item.price} MZN</span>
                     </div>
-                    <p class="item-description">Fresh scallops marinated in citrus, with avocado, radish, and micro cilantro</p>
-                    <button class="order-btn">Add to Order</button>
-                </article>
-            </section>
-
-            <!-- Mains Section -->
-            <!-- In your HTML file, within the <main class="menu-content"> section -->
-<section class="menu-section" id="mains">
-    <h3 class="section-title">Main Courses</h3>
-    
-    <article class="menu-item">
-        <div class="item-header">
-            <h4 class="item-name">Spaghetti Carbonara</h4>
-            <div class="price-dots"></div>
-            <span class="item-price">Mt350</span>
-        </div>
-        <p class="item-description">Al dente pasta with creamy egg sauce, crispy pancetta, and aged Pecorino Romano</p>
-        <button class="order-btn">Add to Order</button>
-    </article>
-
-    <article class="menu-item">
-        <div class="item-header">
-            <h4 class="item-name">Truffle Mushroom Pizza</h4>
-            <div class="price-dots"></div>
-            <span class="item-price">Mt450</span>
-        </div>
-        <p class="item-description">Wood-fired crust with wild mushrooms, truffle oil, fontina cheese, and fresh thyme</p>
-        <button class="order-btn">Add to Order</button>
-    </article>
-
-    <article class="menu-item">
-        <div class="item-header">
-            <h4 class="item-name">Gourmet Hamburger</h4>
-            <div class="price-dots"></div>
-            <span class="item-price">Mt400</span>
-        </div>
-        <p class="item-description">Wagyu beef patty with caramelized onions, aged cheddar, and house-made bourbon BBQ sauce</p>
-        <button class="order-btn">Add to Order</button>
-    </article>
-
-    <article class="menu-item">
-        <div class="item-header">
-            <h4 class="item-name">Grilled Salmon</h4>
-            <div class="price-dots"></div>
-            <span class="item-price">Mt550</span>
-        </div>
-        <p class="item-description">Atlantic salmon with lemon beurre blanc, asparagus, and roasted baby potatoes</p>
-        <button class="order-btn">Add to Order</button>
-    </article>
-</section>
-
-<!-- DESSERTS SECTION -->
-<section class="menu-section" id="desserts">
-    <h3 class="section-title">Sweet Finales</h3>
-    
-    <article class="menu-item">
-        <div class="item-header">
-            <h4 class="item-name">Sorvete de Baunilha</h4>
-            <div class="price-dots"></div>
-            <span class="item-price">Mt250</span>
-        </div>
-        <p class="item-description">Madagascar vanilla bean ice cream with caramelized white chocolate shavings</p>
-        <button class="order-btn">Add to Order</button>
-    </article>
-
-    <article class="menu-item">
-        <div class="item-header">
-            <h4 class="item-name">Sorvete de Chocolate</h4>
-            <div class="price-dots"></div>
-            <span class="item-price">Mt280</span>
-        </div>
-        <p class="item-description">Rich Belgian chocolate ice cream with warm chocolate sauce</p>
-        <button class="order-btn">Add to Order</button>
-    </article>
-
-    <article class="menu-item">
-        <div class="item-header">
-            <h4 class="item-name">Batido de Banana</h4>
-            <div class="price-dots"></div>
-            <span class="item-price">Mt300</span>
-        </div>
-        <p class="item-description">Creamy banana milkshake with caramel drizzle</p>
-        <button class="order-btn">Add to Order</button>
-    </article>
-
-    <article class="menu-item">
-        <div class="item-header">
-            <h4 class="item-name">Milkshake Clássico</h4>
-            <div class="price-dots"></div>
-            <span class="item-price">Mt320</span>
-        </div>
-        <p class="item-description">Velvety vanilla milkshake with whipped cream</p>
-        <button class="order-btn">Add to Order</button>
-    </article>
-</section>
-
-<!-- WINE PAIRING SECTION -->
-<section class="menu-section" id="drinks">
-    <h3 class="section-title">Wine Pairings</h3>
-    
-    <article class="menu-item">
-        <div class="item-header">
-            <h4 class="item-name">Vinho Branco</h4>
-            <div class="price-dots"></div>
-            <span class="item-price">Mt600/garrafa</span>
-        </div>
-        <p class="item-description">Crisp Portuguese Alvarinho, perfect with seafood</p>
-        <button class="order-btn">Add to Order</button>
-    </article>
-
-    <article class="menu-item">
-        <div class="item-header">
-            <h4 class="item-name">Vinho Tinto</h4>
-            <div class="price-dots"></div>
-            <span class="item-price">Mt750/garrafa</span>
-        </div>
-        <p class="item-description">Bold Douro red, pairs wonderfully with meats</p>
-        <button class="order-btn">Add to Order</button>
-    </article>
-
-    <article class="menu-item">
-        <div class="item-header">
-            <h4 class="item-name">Espumante</h4>
-            <div class="price-dots"></div>
-            <span class="item-price">Mt900/garrafa</span>
-        </div>
-        <p class="item-description">Portuguese sparkling wine for celebrations</p>
-        <button class="order-btn">Add to Order</button>
-    </article>
-
-    <article class="menu-item">
-        <div class="item-header">
-            <h4 class="item-name">Sangria</h4>
-            <div class="price-dots"></div>
-            <span class="item-price">Mt400/jarra</span>
-        </div>
-        <p class="item-description">Traditional recipe with seasonal fruits</p>
-        <button class="order-btn">Add to Order</button>
-    </article>
-</section> <section class="contact-section">
-    <div class="gold-divider">
-      <div class="line"></div>
-      <i class="fas fa-star"></i>
-      <div class="line"></div>
-    </div>
-    
-    <h3 class="section-title">Contact Us</h3>
-    <p class="contact-subtitle">Reservations & Inquiries</p>
-    
-    <div class="contact-buttons">
-      <!-- Animated Call Button -->
-      <a href="tel:+258123456789" class="contact-btn call-btn">
-        <div class="btn-content">
-          <div class="icon-circle">
-            <i class="fas fa-phone-alt"></i>
-          </div>
-          <div class="btn-text">
-            <span class="btn-label">Call Us</span>
-            <span class="btn-detail">+258 842094211</span>
-          </div>
-        </div>
-        <div class="pulse-ring"></div>
-      </a>
-      
-      <!-- Glowing Email Button -->
-      <a href="mailto:reservations@labellecuisine.com" class="contact-btn email-btn">
-        <div class="btn-content">
-          <div class="icon-circle">
-            <i class="fas fa-envelope"></i>
-          </div>
-          <div class="btn-text">
-            <span class="btn-label">Email Us</span>
-            <span class="btn-detail">reservations@labellecuisine.com</span>
-          </div>
-        </div>
-        <div class="glow"></div>
-      </a>
-    </div>
-  </section>
-
-
-        </main>
-
-        <aside class="order-summary">
-            <div class="order-header">
-                <h3>Your Selection</h3>
-                <span class="item-count">0 items</span>
-            </div>
-            <div class="order-items">
-                <!-- Items will be added here dynamically -->
-            </div>
-            <div class="order-total">
-                <span>Total</span>
-                <span class="total-amount">Mt0</span>
-            </div>
-            <button class="checkout-btn">Reserve Your Table</button>
-        </aside>
-    </div>
-
-    <script src="script.js"></script>
+                `;
+                orderItemsContainer.appendChild(itemElement);
+            });
+            
+            // Update counts
+            itemCount.textContent = `${orderItems.length} ${orderItems.length === 1 ? 'item' : 'items'}`;
+            totalAmount.textContent = `${orderTotal} MZN`;
+        }
+        
+        function showNotification() {
+            const notification = document.getElementById('orderNotification');
+            notification.classList.add('notification-visible');
+            
+            setTimeout(() => {
+                notification.classList.remove('notification-visible');
+            }, 3000);
+        }
+        
+        // Create floating elements
+        function createFloatingElements() {
+            const container = document.getElementById('elements-container');
+            const elements = ['✨', '🍽️', '🍷', '🍤', '🍰'];
+            const elementCount = 15;
+            
+            for (let i = 0; i < elementCount; i++) {
+                const element = document.createElement('div');
+                element.className = 'floating-element';
+                element.innerHTML = elements[Math.floor(Math.random() * elements.length)];
+                element.style.left = `${Math.random() * 100}%`;
+                element.style.animationDuration = `${5 + Math.random() * 10}s`;
+                element.style.animationDelay = `${Math.random() * 5}s`;
+                container.appendChild(element);
+            }
+        }
+        
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            createFloatingElements();
+        });
+    </script>
 </body>
-
 </html>
